@@ -1,0 +1,52 @@
+@keyframes animationProgress{
+    from{
+        transform: scale(1, 1);
+    }
+
+    50%{
+        transform: scale(1.2, 1.2);
+    }
+
+    to{
+        transform: scale(1, 1);
+    }
+}
+
+.progress{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--color2);
+    color: #f2f2f2;
+    text-align: center;
+    vertical-align: middle;
+    box-shadow: 2px 2px 2px var(--color1);
+    animation: animationProgress 300ms;
+}
+
+@media screen and (max-width:420px){
+    .progress{
+        width: 40px;
+        height: 40px;
+        border-radius: 4px;
+        font-size: 12px;
+    }
+}
+
+@media screen and (min-width:700px){
+    .progress{
+        width: 50px;
+        height: 50px;
+        border-radius: 5px;
+        font-size: 14px;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .progress{
+        width: 60px;
+        height: 60px;
+        border-radius: 6px;
+        font-size: 18px;
+    }
+}

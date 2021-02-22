@@ -1,0 +1,22 @@
+.button.exit{
+    width: 30px;
+    height: 30px;
+    border-radius: 4px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-size: contain;
+    flex: none;
+    align-self: center;
+    padding: 8px;
+}
+
+.button.exit{
+    background: url("./img.png") no-repeat 50% 50%;
+    background-size: contain;
+}
+
+
+.button.exit:hover{
+    transform: scale(0.9, 0.9);
+}

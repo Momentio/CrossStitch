@@ -1,0 +1,59 @@
+.game{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-height: 90vh;
+    width: 100%;
+    padding: 16px 0;
+}
+
+.game__instruments, .game__info{
+    display: flex;
+    gap: 16px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.game__info{
+    justify-content: space-between;
+}
+
+@media screen and (max-width:420px){
+    .game{
+        gap: 8px;
+    }
+
+    .game__instruments, .game__info{
+        padding: 16px;
+    }
+}
+
+@media screen and (min-width:700px){
+    .game{
+        gap: 16px;
+    }
+
+    .game__instruments, .game__info{
+        padding: 16px 24px;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .game{
+        flex-direction: row;
+        gap: 24px;
+    }
+
+    .game__instruments, .game__info{
+        flex-direction: column;
+        gap: 16px;
+        width: auto;
+        max-height: 600px;
+        margin-bottom: auto;
+    }
+
+    .game__instruments, .game__info{
+        padding: 8px;
+    }
+}

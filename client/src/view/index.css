@@ -1,0 +1,36 @@
+@font-face {
+    font-family: "Bender";  
+    src: url("./fonts/Bender.ttf") format("truetype"); 
+    font-style: normal; 
+    font-weight: normal;
+}
+
+*, *::after, *::before{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background: #f2f2f2;
+    font-family: "Bender";
+    color: var(--color2);
+    font-size: 20px;
+    letter-spacing: 1.5px;
+}
+
+:root{
+    --color1: #A6290D;
+    --color2: #F27405;
+    --color3: #F2B705;
+    --color4: #0378A6;
+    --color5: #0367A6;
+}
+
+.text-center{
+    text-align: center;
+}
+
+.flex-column{
+    flex-direction: column;
+}

@@ -1,0 +1,51 @@
+.input{
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    letter-spacing: 1px;
+    outline: none;
+    padding: 8px 16px;
+    color: var(--color2);
+    text-align: center;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    font-family: "Bender";
+    border: var(--color2) solid 1px;
+}
+
+.input:hover:not(:focus){
+    box-shadow: 4px 4px 16px var(--color2);
+}
+
+.input:focus{
+    border: var(--color3) solid 4px;
+}
+
+.input[type = "file"]{
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.input[type = "file"] + label{
+    display: inline-block;
+    position: relative;
+    font-size: 18px;
+    letter-spacing: 1px;
+    outline: none;
+    padding: 8px 16px;
+    color: var(--color2);
+    text-align: center;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    font-family: "Bender";
+    border: var(--color2) solid 1px;
+}
+
+.input[type = "file"] + label:hover {
+    background: var(--color2);
+    color: #f2f2f2;
+}

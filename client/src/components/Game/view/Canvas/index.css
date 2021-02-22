@@ -1,0 +1,16 @@
+.canvas{
+    border-radius: 4px;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.canvas.canvas--hidden{
+    display: none;
+}
+
+@media screen and (min-width:1200px){
+    .canvas{
+        margin: 0;
+        margin-bottom: auto;
+    }
+}

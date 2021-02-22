@@ -1,0 +1,56 @@
+.button.clear{
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    background-size: contain;
+    flex: none;
+    align-self: center;
+}
+
+.button.clear{
+    background: url("./img.png") no-repeat 50% 50%;
+    background-size: contain;
+}
+
+.button.clear:hover{
+    border: var(--color2) solid 1px;
+}
+
+.button.clear:focus{
+    border: var(--color2) solid 3px;
+}
+
+.button.clear.clear--actived{
+    border: var(--color2) solid 3px;
+}
+
+@media screen and (max-width:420px){
+    .button.clear{
+        width: 40px;
+        height: 40px;
+        border-radius: 20px;
+        align-self: baseline;
+    }
+}
+
+
+@media screen and (min-width:700px){
+    .button.clear{
+        width: 50px;
+        height: 50px;
+        border-radius: 25px;
+        align-self: baseline;
+    }
+}
+
+@media screen and (min-width:1200px){
+    .button.clear{
+        width: 60px;
+        height: 60px;
+        border-radius: 30px;
+        align-self: center;
+    }
+}
