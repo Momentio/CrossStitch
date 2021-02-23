@@ -197,16 +197,18 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
         const color = embroideryMap[yi][xi].color.join();
         const currentColorValue = currentColor ? currentColor.join() : null;
 
+        if(scale !== 1){
+            ctx.drawImage(
+                resources.cell,
+                coordinates.relative.x,
+                coordinates.relative.y,
+                scaledCellSize,
+                scaledCellSize,
+            );
+        }
+
         if(!value){
             if(scale !== 1){
-                ctx.drawImage(
-                    resources.cell,
-                    coordinates.relative.x,
-                    coordinates.relative.y,
-                    scaledCellSize,
-                    scaledCellSize,
-                );
-
                 if(color === currentColorValue){
                     drawCircle(
                         ctx,
