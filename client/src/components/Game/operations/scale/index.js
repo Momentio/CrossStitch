@@ -1,11 +1,17 @@
 import move from "../move";
 import render from "../render";
+import calcLocationCenteredCross from "../../middlewares/calcLocationCenteredCross";
 
-export default (mode, coordinates) => {
+export default (mode, crossIndexes) => {
     return (dispatch, getState)=>{
       const state = getState();
       let game = state.game.gValue;
-      let scale = game.scale;
+      const {
+          canvasSize,
+          scale,
+          embroideryCoordinates,
+          crossSize,
+      } = game;
       
       let dispatchUpdateScale = value => {
         dispatch(
@@ -23,8 +29,6 @@ export default (mode, coordinates) => {
       const maxScale = 64 / game.crossSize;
 
       const middleScale = 48 / game.crossSize;
-
-      let focusedLocate;
 
       switch(mode){
         case "+":
@@ -55,13 +59,17 @@ export default (mode, coordinates) => {
               );
 
             }else{
-              if(coordinates){
-                focusedLocate = {
-                  x: coordinates.x * newScale - game.canvasSize / 2,
-                  y: coordinates.y * newScale - game.canvasSize / 2,
-                };
-  
-                dispatchMove("fixed", focusedLocate);
+              if(crossIndexes){
+                dispatchMove(
+                  "fixed",
+                  calcLocationCenteredCross(
+                    canvasSize,
+                    embroideryCoordinates,
+                    crossSize,
+                    crossIndexes,
+                    newScale
+                  )
+                );
   
               }else{
                 dispatchMove(
@@ -96,13 +104,17 @@ export default (mode, coordinates) => {
               );
 
             }else{
-              if(coordinates){
-                focusedLocate = {
-                  x: coordinates.x * newScale - game.canvasSize / 2,
-                  y: coordinates.y * newScale - game.canvasSize / 2,
-                };
-
-                dispatchMove("fixed", focusedLocate);
+              if(crossIndexes){
+                dispatchMove(
+                  "fixed",
+                  calcLocationCenteredCross(
+                    canvasSize,
+                    embroideryCoordinates,
+                    crossSize,
+                    crossIndexes,
+                    newScale
+                  )
+                );
 
               }else{
                 dispatchMove(

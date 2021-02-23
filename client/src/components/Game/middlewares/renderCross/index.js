@@ -33,7 +33,7 @@ export default function(
 
     const speed = 60;
 
-    try{console.log(color)
+    try{
         if(!animation){
             draw(4);
 
