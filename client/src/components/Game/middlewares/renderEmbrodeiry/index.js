@@ -2,6 +2,7 @@ import renderCross from "../renderCross";
 import desaturateImage from "../desaturateImage";
 import forCrossCoordinates from "../forCrossCoordinates";
 import drawCircle from "../drawCircle";
+import imagesCache from "../imagesCache";
 
 export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
     const {
@@ -111,24 +112,14 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
         }
     }
 
-    /**
-     * сохраняем здесь копии
-     * перекрашенных изображений,
-     * чтобы не перекрашивать повторно
-     */
-
-    if(!window.imagesCache){
-        window.imagesCache = {};
-    }
-
     const beginKeyImagesCache = String(canvasSize) + session.imageSize + session.numberColors;
 
     if(scale === 1){
         const imagesCacheKey = beginKeyImagesCache  + "blackWhiteImage";
 
-        if(window.imagesCache[imagesCacheKey]){
+        if(imagesCache[imagesCacheKey]){
             ctx.putImageData(
-                window.imagesCache[imagesCacheKey], 0, 0,
+                imagesCache[imagesCacheKey], 0, 0,
             );
 
         }else{
@@ -147,7 +138,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
 
                 let imagesRecolorCellKey = beginKeyImagesCache + color.join() + scale + "cell";
 
-                if(!window.imagesCache[imagesRecolorCellKey]){
+                if(!imagesCache[imagesRecolorCellKey]){
                     desaturateImage(
                         ctx,
                         coordinates.relative.x,
@@ -162,7 +153,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
                      */
 
                     if(checkIn(coordinates)){
-                        window.imagesCache[imagesRecolorCellKey] = ctx.getImageData(
+                        imagesCache[imagesRecolorCellKey] = ctx.getImageData(
                             coordinates.relative.x,
                             coordinates.relative.y,
                             scaledCellSize,
@@ -172,14 +163,14 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
 
                 }else{
                     ctx.putImageData(
-                        window.imagesCache[imagesRecolorCellKey],
+                        imagesCache[imagesRecolorCellKey],
                         coordinates.relative.x,
                         coordinates.relative.y,
                     );
                 }
             });
 
-            window.imagesCache[imagesCacheKey] = ctx.getImageData(
+            imagesCache[imagesCacheKey] = ctx.getImageData(
                 0,
                 0,
                 canvasSize,
@@ -239,7 +230,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
             if(!updatedCrossIndexes
                 || !(yi === updatedCrossIndexes.y
                         && xi === updatedCrossIndexes.x)){
-                if(!window.imagesCache[imagesRecolorCrossKey]){
+                if(!imagesCache[imagesRecolorCrossKey]){
                     renderCross(
                         ctx,
                         resources.cross,
@@ -250,7 +241,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
                     );
                     
                     if(checkIn(coordinates)){
-                        window.imagesCache[imagesRecolorCrossKey] = ctx.getImageData(
+                        imagesCache[imagesRecolorCrossKey] = ctx.getImageData(
                             coordinates.relative.x,
                             coordinates.relative.y,
                             scaledCellSize,
@@ -260,7 +251,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
     
                 }else{
                     ctx.putImageData(
-                        window.imagesCache[imagesRecolorCrossKey],
+                        imagesCache[imagesRecolorCrossKey],
                         coordinates.relative.x,
                         coordinates.relative.y,
                     );
