@@ -30,19 +30,24 @@ export default (mode, crossIndexes) => {
 
       const middleScale = 48 / game.crossSize;
 
+      const minScale = 32 / game.crossSize;
+
       switch(mode){
         case "+":
           switch(scale){
             case maxScale:
-              newScale = maxScale;
             break;
 
             case middleScale:
               newScale = maxScale;
             break;
 
+            case minScale:
+              newScale = middleScale;
+            break;
+
             case 1:
-              newScale = maxScale;
+              newScale = minScale;
             break;
 
             default:
@@ -87,6 +92,10 @@ export default (mode, crossIndexes) => {
             break;
 
             case middleScale:
+              newScale = minScale;
+            break;
+
+            case minScale:
               newScale = 1;
             break;
 
