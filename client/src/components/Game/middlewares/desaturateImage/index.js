@@ -16,7 +16,7 @@ export default function(
             height
         );
         
-        for (var i = 0; i < imgData.data.length; i += 4) {
+        for (let i = 0; i < imgData.data.length; i += 4) {
             let r = imgData.data[i + 0] * 0.2126;
             let g = imgData.data[i + 1] * 0.7152;
             let b = imgData.data[i + 2] * 0.0722;

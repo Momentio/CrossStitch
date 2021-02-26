@@ -4,7 +4,7 @@ export default function(
 ){
     let colors = [];
 
-    for (var i = 0; i < imgData.data.length; i += 4) {
+    for (let i = 0; i < imgData.data.length; i += 4) {
         let color = [
             imgData.data[i + 0],
             imgData.data[i + 1],
@@ -93,7 +93,7 @@ export default function(
         value: color,
     }));
 
-    for (var i = 0; i < imgData.data.length; i += 4) {
+    for (let i = 0; i < imgData.data.length; i += 4) {
         let color = [
             imgData.data[i + 0],
             imgData.data[i + 1],

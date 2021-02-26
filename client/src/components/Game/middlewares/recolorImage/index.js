@@ -18,7 +18,7 @@ export default function(
             height
         );
         
-        for (var i = 0; i < imgData.data.length; i += 4) {
+        for (let i = 0; i < imgData.data.length; i += 4) {
             let difference = [];
     
             difference[0] = thisArrRGBA[0] - imgData.data[i + 0];
