@@ -82,12 +82,12 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
     }
 
     function getCrossCoordinates(xi, yi){
-        let absoluteCoordinates = {
+        const absoluteCoordinates = {
             x:  scaledEmbroideryCoordinates.x + xi * scaledCellSize,
             y:  scaledEmbroideryCoordinates.y + yi * scaledCellSize,
         };
 
-        let relativeCoordinates = {
+        const relativeCoordinates = {
             x:  absoluteCoordinates.x - location.x,
             y: absoluteCoordinates.y - location.y,
         };
@@ -124,8 +124,8 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
 
         }else{
             forCrossCoordinates(indexesVisibleStart, indexesVisibleEnd, (yi, xi) => {
-                let coordinates = getCrossCoordinates(xi, yi);
-                let color = embroideryMap[yi][xi].color;
+                const coordinates = getCrossCoordinates(xi, yi);
+                const color = embroideryMap[yi][xi].color;
 
                 ctx.fillStyle = `rgb(${embroideryMap[yi][xi].color.join(",")})`;
 
@@ -136,7 +136,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
                     scaledCellSize,
                 );
 
-                let imagesRecolorCellKey = beginKeyImagesCache + color.join() + scale + "cell";
+                const imagesRecolorCellKey = beginKeyImagesCache + color.join() + scale + "cell";
 
                 if(!imagesCache[imagesRecolorCellKey]){
                     desaturateImage(
@@ -224,8 +224,8 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
         }
         
         if(value){
-            let colorKey = value.join();
-            let imagesRecolorCrossKey = beginKeyImagesCache + colorKey + scale + "cross";
+            const colorKey = value.join();
+            const imagesRecolorCrossKey = beginKeyImagesCache + colorKey + scale + "cross";
 
             if(!updatedCrossIndexes
                 || !(yi === updatedCrossIndexes.y

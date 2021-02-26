@@ -3,11 +3,11 @@ import render from "../render";
 export default (mode, value = {x: undefined, y: undefined}) => {
     return (dispatch, getState)=>{
       const state = getState();
-      let game = state.game.gValue;
+      const game = state.game.gValue;
 
-      let location = game.location;
+      const location = game.location;
       
-      let updateLocation = value => {
+      const updateLocation = value => {
         dispatch(
           state.game.location.gUpdate(value)
         )
@@ -15,10 +15,10 @@ export default (mode, value = {x: undefined, y: undefined}) => {
         dispatch(render());
       };
       
-      let minLocation = 0;
-      let maxLocation = game.canvasSize * (game.scale - 1);
+      const minLocation = 0;
+      const maxLocation = game.canvasSize * (game.scale - 1);
       
-      let step = {
+      const step = {
         x: value.x !== undefined ? value.x : game.crossSize * game.scale,
         y: value.y !== undefined ? value.y : game.crossSize * game.scale,
       };

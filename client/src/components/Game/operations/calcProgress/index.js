@@ -9,9 +9,9 @@ export default () => {
       let numberTrueCrosses = 0;
 
       Object.keys(data || {}).forEach(key => {
-        let yi = +key.split("/")[0];
-        let xi = +key.split("/")[1];
-        let keyValue = data[key] ? data[key].join() : null;
+        const yi = +key.split("/")[0];
+        const xi = +key.split("/")[1];
+        const keyValue = data[key] ? data[key].join() : null;
         // console.log(game.embroideryMap[yi][xi].color.join() , keyValue);
 
         if(game.embroideryMap[yi][xi].color.join() === keyValue){

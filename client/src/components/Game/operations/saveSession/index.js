@@ -3,8 +3,8 @@ export default () => {
     return (dispatch, getState)=>{
       const state = getState();
       const storage = localStorage;
-      let sessionModel = state.game.session;
-      let sessionValue = sessionModel.gValue;
+      const sessionModel = state.game.session;
+      const sessionValue = sessionModel.gValue;
 
       const newValue = {
         image: sessionValue.image,

@@ -9,7 +9,7 @@ export default function(
     if(ctx !== undefined && xCoordinate !== undefined && yCoordinate !== undefined
         && width !== undefined && height !== undefined){
 
-        let imgData = ctx.getImageData(
+        const imgData = ctx.getImageData(
             xCoordinate,
             yCoordinate,
             width,
@@ -17,11 +17,11 @@ export default function(
         );
         
         for (let i = 0; i < imgData.data.length; i += 4) {
-            let r = imgData.data[i + 0] * 0.2126;
-            let g = imgData.data[i + 1] * 0.7152;
-            let b = imgData.data[i + 2] * 0.0722;
+            const r = imgData.data[i + 0] * 0.2126;
+            const g = imgData.data[i + 1] * 0.7152;
+            const b = imgData.data[i + 2] * 0.0722;
 
-            let v = r + g + b;
+            const v = r + g + b;
     
             imgData.data[i + 0] = v;
             imgData.data[i + 1] = v;

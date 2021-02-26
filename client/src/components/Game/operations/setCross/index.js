@@ -5,7 +5,7 @@ import update from "../update";
 export default (crossInfo, mode = true, callback = () => {}) => {
     return (dispatch, getState)=>{
       const state = getState();
-      let game = state.game.gValue;
+      const game = state.game.gValue;
       
       if(crossInfo){
         const sessionData = JSON.parse(JSON.stringify(game.session.data));

@@ -9,8 +9,8 @@ class HttpQuery extends PureComponent {
   render() {
     if(!this.props.gModel || !this.props.gModel.gValue) return false;
 
-    let model = this.props.gModel;
-    let value = model.gValue;
+    const gModel = this.props.gModel;
+    const value = gModel.gValue;
 
     let status;
     let wait = true;

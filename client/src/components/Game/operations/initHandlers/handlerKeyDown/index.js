@@ -5,7 +5,7 @@ export default (event = new Event()) => {
     return (dispatch, getState)=>{
       const state = getState();
       
-      let dispatchMove = (mode) => dispatch(
+      const dispatchMove = (mode) => dispatch(
         move(mode)
       );
 

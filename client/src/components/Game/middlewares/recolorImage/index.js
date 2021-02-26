@@ -11,7 +11,7 @@ export default function(
     if(ctx !== undefined && xCoordinate !== undefined && yCoordinate !== undefined
         && width !== undefined && height !== undefined && targetArrRGBA !== undefined){
 
-        let imgData = ctx.getImageData(
+        const imgData = ctx.getImageData(
             xCoordinate,
             yCoordinate,
             width,
@@ -19,7 +19,7 @@ export default function(
         );
         
         for (let i = 0; i < imgData.data.length; i += 4) {
-            let difference = [];
+            const difference = [];
     
             difference[0] = thisArrRGBA[0] - imgData.data[i + 0];
             difference[1] = thisArrRGBA[1] - imgData.data[i + 1];

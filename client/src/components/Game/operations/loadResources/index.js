@@ -4,16 +4,16 @@ export default (callback = () => {}) => {
     return (dispatch, getState)=>{
       const state = getState();
 
-      let images = {};
+      const images = {};
 
       function loader(){
-        let keysResources = Object.keys(resources);
-        let keysImages = Object.keys(images);
+        const keysResources = Object.keys(resources);
+        const keysImages = Object.keys(images);
 
         if(keysResources.length > keysImages.length){
           keysResources.forEach((key, i) => {
             if(i === keysImages.length){
-              let img = new Image();
+              const img = new Image();
     
               img.onload = () => {
                 images[key] = img;

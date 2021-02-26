@@ -14,7 +14,7 @@ class Select extends PureComponent {
   }
 
   render() {
-    let options = {};
+    const options = {};
 
     if(this.props.children){
       if(this.props.children.length){
@@ -29,7 +29,7 @@ class Select extends PureComponent {
       }
     }
 
-    let value = options[this.props.value] || "-";
+    const value = options[this.props.value] || "-";
     
     return (
       <div 
@@ -49,7 +49,7 @@ class Select extends PureComponent {
           <ul className="select__list">
             {
               Object.keys(options).map((key, index) => {
-                let name = String(options[key]);
+                const name = String(options[key]);
 
                 return (
                   <li

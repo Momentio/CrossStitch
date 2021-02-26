@@ -5,7 +5,7 @@ import calcLocationCenteredCross from "../../middlewares/calcLocationCenteredCro
 export default (mode, crossIndexes) => {
     return (dispatch, getState)=>{
       const state = getState();
-      let game = state.game.gValue;
+      const game = state.game.gValue;
       const {
           canvasSize,
           scale,
@@ -13,14 +13,14 @@ export default (mode, crossIndexes) => {
           crossSize,
       } = game;
       
-      let dispatchUpdateScale = value => {
+      const dispatchUpdateScale = value => {
         dispatch(
           state.game.scale.gUpdate(value)
         )
         dispatch(render());
       };
       
-      let dispatchMove = (mode, value) => dispatch(
+      const dispatchMove = (mode, value) => dispatch(
         move(mode, value)
       );
       

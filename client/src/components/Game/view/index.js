@@ -27,7 +27,7 @@ class Game extends Component {
   render() {
     if(!this.props.gModel || !this.props.gModel.gValue) return false;
 
-    let value = this.props.gModel.gValue;
+    const value = this.props.gModel.gValue;
     
     if(value.status === "uploadingImage"){
       return (

@@ -5,14 +5,14 @@ export default function(
     let colors = [];
 
     for (let i = 0; i < imgData.data.length; i += 4) {
-        let color = [
+        const color = [
             imgData.data[i + 0],
             imgData.data[i + 1],
             imgData.data[i + 2],
             imgData.data[i + 3]
         ];
 
-        let isExists = colors.some(c => {
+        const isExists = colors.some(c => {
             // return color[0] === c[0]
             //     && color[1] === c[1]
             //     && color[2] === c[2];
@@ -29,9 +29,9 @@ export default function(
     }
 
 
-    let callculateMainColors = (colors, length,  porog = minPorog) => {
+    const callculateMainColors = (colors, length,  porog = minPorog) => {
         if(colors.length !== length && porog != 255){
-            let newColors = colors.reduce((a, c) => {
+            const newColors = colors.reduce((a, c) => {
                 a = a.filter(e => {
                     return !check(e, c, porog);
                 });
@@ -53,7 +53,7 @@ export default function(
     let mainColors = callculateMainColors(colors, numberColors);
 
 
-    let calculateSimilarColor = (test, mainColors, porog = 256) => {
+    const calculateSimilarColor = (test, mainColors, porog = 256) => {
         if(mainColors.length !== 1 && porog){
 
             let newList = mainColors.filter(e => {
@@ -86,7 +86,7 @@ export default function(
     });
 
 
-    let colorsArray = [];
+    const colorsArray = [];
 
     mainColors = mainColors.map((color, i) => ({
         name: i + 1,// RU[i],
@@ -94,14 +94,14 @@ export default function(
     }));
 
     for (let i = 0; i < imgData.data.length; i += 4) {
-        let color = [
+        const color = [
             imgData.data[i + 0],
             imgData.data[i + 1],
             imgData.data[i + 2],
             imgData.data[i + 3]
         ];
 
-        let found = colors.find(c => {
+        const found = colors.find(c => {
             // return imgData.data[i + 0] === c.c[0]
             //     && imgData.data[i + 1] === c.c[1]
             //      && imgData.data[i + 2] === c.c[2];
@@ -109,7 +109,7 @@ export default function(
             }
         );
         
-        let colorName = mainColors.find(color => {
+        const colorName = mainColors.find(color => {
             return found.main[0] === color.value[0]
                 && found.main[1] === color.value[1]
                  && found.main[2] === color.value[2];
@@ -124,7 +124,7 @@ export default function(
         );
     }
 
-    let imgMap = new Array(imageSize).fill(null);
+    const imgMap = new Array(imageSize).fill(null);
 
     for(let i = 0; i < imageSize; i++){
         imgMap[i] = colorsArray.slice(i * imageSize, i * imageSize + imageSize);

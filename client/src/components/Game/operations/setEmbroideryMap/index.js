@@ -4,16 +4,16 @@ import quantization from "../../middlewares/quantization";
 export default (callback = () => {}) => {
     return (dispatch, getState)=>{
       const state = getState();
-      let mode = state.gValue.mode;
-      let game = state.gValue.game;
+      const mode = state.gValue.mode;
+      const game = state.gValue.game;
 
       const $canva = document.getElementById("canvas");
       const ctx = $canva.getContext('2d');
 
-      let img = new Image();
+      const img = new Image();
 
       img.onload = () => {
-        let imageSize = game.session.imageSize;
+        const imageSize = game.session.imageSize;
 
         ctx.drawImage(
           img,
@@ -23,7 +23,7 @@ export default (callback = () => {}) => {
           imageSize,
         );
 
-        let imgData = ctx.getImageData(
+        const imgData = ctx.getImageData(
           (game.canvasSize - imageSize) / 2,
           (game.canvasSize - imageSize) / 2,
           imageSize,

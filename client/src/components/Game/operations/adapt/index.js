@@ -2,7 +2,7 @@
 export default (callback = () => {}) => {
     return (dispatch, getState)=>{
       const state = getState();
-      let session = state.game.session.gValue;
+      const session = state.game.session.gValue;
 
       const imageSize = session.imageSize;
 

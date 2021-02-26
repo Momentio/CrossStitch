@@ -2,7 +2,7 @@
 export default () => {
     return (dispatch, getState)=>{
       const state = getState();
-      let sessionModel = state.game.session;
+      const sessionModel = state.game.session;
       
       localStorage.setItem("session", "");
 

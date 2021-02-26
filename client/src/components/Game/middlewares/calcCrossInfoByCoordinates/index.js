@@ -14,7 +14,7 @@ export default function(
     
     if(eventCoordinates && game){
       // координаты текущего местоположения вышивки
-      let embroideryLocation = {
+      const embroideryLocation = {
         x: embroideryCoordinates.x * scale - location.x,
         y: embroideryCoordinates.y * scale - location.y,
       };
@@ -26,13 +26,13 @@ export default function(
           && eventCoordinates.y <= embroideryLocation.y + embroiderySize * scale){
   
             // координаты крестика относительно вышивки
-            let crossCoordinatesRelativeEmbroidery = {
+            const crossCoordinatesRelativeEmbroidery = {
               x: eventCoordinates.x - embroideryLocation.x,
               y: eventCoordinates.y - embroideryLocation.y,
             };
       
             // индексы крестика в массиве
-            let indexes = {
+            const indexes = {
               x: Math.floor(
                 crossCoordinatesRelativeEmbroidery.x / (crossSize * scale)
               ),
@@ -45,20 +45,18 @@ export default function(
               && (indexes.y >= 0 && indexes.y < embroideryMap.length)){
   
                 // координаты крестика относительно вышивки
-                let coordinates = {
+                const coordinates = {
                   x: embroideryLocation.x + (indexes.x * crossSize * scale),
                   y: embroideryLocation.y + (indexes.y * crossSize * scale),
                 };
   
                 // абсолютные координаты крестика
-                let absoluteCoordinates = {
+                const absoluteCoordinates = {
                   x: embroideryCoordinates.x + crossSize * scale * indexes.x,
                   y: embroideryCoordinates.y + crossSize * scale * indexes.y,
                 };
   
-                let sessionData = session.data;
-  
-                let dataKey = `${indexes.y}/${indexes.x}`;
+                const dataKey = `${indexes.y}/${indexes.x}`;
   
                 callback(
                   {
@@ -66,7 +64,7 @@ export default function(
                     coordinates,
                     absoluteCoordinates,
                     exists: Boolean(
-                      sessionData ? sessionData[dataKey] : false
+                      session.data ? session.data[dataKey] : false
                     )
                   }
                 );

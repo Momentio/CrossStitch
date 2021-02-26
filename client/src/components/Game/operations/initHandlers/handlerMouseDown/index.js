@@ -38,9 +38,9 @@ export default (event = new Event()) => {
       }
       
       function moveTo(moveEvent){
-        let location = state.game.gValue.location;
-        let startCoordinates = getMouseCoordinates(event);
-        let endCoordinates = getMouseCoordinates(moveEvent);
+        const location = state.game.gValue.location;
+        const startCoordinates = getMouseCoordinates(event);
+        const endCoordinates = getMouseCoordinates(moveEvent);
 
         dispatch(
           move(

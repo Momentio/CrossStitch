@@ -6,7 +6,7 @@ export default (file) => {
       const httpQueryModel = state.game.httpQuery;
 
       if(file){
-        let formData = new FormData();
+        const formData = new FormData();
   
         formData.append('filedata', file);
 

@@ -21,7 +21,7 @@ export default () => {
         dispatch(handlerKeyDown(event));
       });
 
-      let dispatchHandlerWheel = event => dispatch(handlerWheel(event));
+      const dispatchHandlerWheel = event => dispatch(handlerWheel(event));
 
       if ($canva.addEventListener) {
         if ('onwheel' in document) {
