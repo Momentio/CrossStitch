@@ -1,7 +1,5 @@
 
-export default function(
-  eventCoordinates, game, callback = () => {}
-){
+export default function(eventCoordinates, game){
     const {
       crossSize,
       scale,
@@ -18,7 +16,6 @@ export default function(
         x: embroideryCoordinates.x * scale - location.x,
         y: embroideryCoordinates.y * scale - location.y,
       };
-  
   
       if(eventCoordinates.x >= embroideryLocation.x
           && eventCoordinates.y >= embroideryLocation.y
@@ -55,26 +52,22 @@ export default function(
                   x: embroideryCoordinates.x + crossSize * scale * indexes.x,
                   y: embroideryCoordinates.y + crossSize * scale * indexes.y,
                 };
-  
-                const dataKey = `${indexes.y}/${indexes.x}`;
-  
-                callback(
-                  {
-                    indexes,
-                    coordinates,
-                    absoluteCoordinates,
-                    exists: Boolean(
-                      session.data ? session.data[dataKey] : false
-                    )
-                  }
-                );
+
+                return {
+                  indexes,
+                  coordinates,
+                  absoluteCoordinates,
+                  exists: Boolean(
+                    session.data ? session.data[`${indexes.y}/${indexes.x}`] : false
+                  )
+                };
                 
             }else{
-              callback(false);
+              return false;
             }
   
       }else{
-        callback(false);
+        return false;
       }
     }
 }

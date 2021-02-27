@@ -1,6 +1,6 @@
 import render from "../render";
 
-export default (mode, value = {x: undefined, y: undefined}) => {
+export default (direction, value = {x: undefined, y: undefined}) => {
     return (dispatch, getState)=>{
       const state = getState();
       const game = state.game.gValue;
@@ -25,7 +25,7 @@ export default (mode, value = {x: undefined, y: undefined}) => {
 
       let newValue;
 
-      switch(mode){
+      switch(direction){
         case "left":
           if(location.x - step.x >= minLocation){
             newValue = {
