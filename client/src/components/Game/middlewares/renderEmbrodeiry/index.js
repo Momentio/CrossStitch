@@ -220,6 +220,17 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
                         scaledCellSize
                     );
                 }
+
+            }else{
+                if(color === currentColorValue){
+                    ctx.fillStyle = "rgba(255, 165, 0, 150)";
+                    ctx.fillRect(
+                        coordinates.relative.x,
+                        coordinates.relative.y,
+                        scaledCellSize,
+                        scaledCellSize
+                    );
+                }
             }
         }
         
@@ -278,52 +289,19 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
                         6,
                         "rgba(255, 0, 0, 150)"
                     );
+
+                }else{
+                    ctx.fillStyle = "rgba(255, 0, 0, 150)";
+                    ctx.fillRect(
+                        coordinates.relative.x,
+                        coordinates.relative.y,
+                        scaledCellSize,
+                        scaledCellSize
+                    );
                 }
             }
         }
     });
-
-    if(scale === 1){
-        if(currentColor !== null){
-            forCrossCoordinates(indexesVisibleStart, indexesVisibleEnd, (yi, xi) => {
-                const coordinates = getCrossCoordinates(xi, yi);
-                const value = session.data ? session.data[`${yi}/${xi}`] : null;
-                const color = embroideryMap[yi][xi].color.join();
-                const currentColorValue = currentColor ? currentColor.join() : null;
-        
-                if(!value){
-                    if(color === currentColorValue){
-                        drawCircle(
-                            ctx,
-                            coordinates.relative.x + scaledCellSize / 2,
-                            coordinates.relative.y + scaledCellSize / 2,
-                            4,
-                            "rgba(255, 165, 0, 150)"
-                        );
-                    }
-                }
-            });
-
-        }else{
-            forCrossCoordinates(indexesVisibleStart, indexesVisibleEnd, (yi, xi) => {
-                const coordinates = getCrossCoordinates(xi, yi);
-                const value = session.data ? session.data[`${yi}/${xi}`] : null;
-                const color = embroideryMap[yi][xi].color.join();
-        
-                if(value){
-                    if(color !== value.join()){
-                        drawCircle(
-                            ctx,
-                            coordinates.relative.x + scaledCellSize / 2,
-                            coordinates.relative.y + scaledCellSize / 2,
-                            4,
-                            "rgba(255, 0, 0, 150)"
-                        );
-                    }
-                }
-            });
-        }
-    }
 
     callback();
 }

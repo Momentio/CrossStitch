@@ -12,7 +12,6 @@ export default () => {
         const yi = +key.split("/")[0];
         const xi = +key.split("/")[1];
         const keyValue = data[key] ? data[key].join() : null;
-        // console.log(game.embroideryMap[yi][xi].color.join() , keyValue);
 
         if(game.embroideryMap[yi][xi].color.join() === keyValue){
           numberTrueCrosses++;
