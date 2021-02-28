@@ -2,41 +2,23 @@
 export default function(
     imgData, numberColors = 10, imageSize = 100, minPorog = 1, callback = () => {}
 ){
-    let colors = [];
-
-    for (let i = 0; i < imgData.data.length; i += 4) {
-        const color = [
-            imgData.data[i + 0],
-            imgData.data[i + 1],
-            imgData.data[i + 2],
-            imgData.data[i + 3]
-        ];
-
-        const isExists = colors.some(c => {
-            // return color[0] === c[0]
-            //     && color[1] === c[1]
-            //     && color[2] === c[2];
-            return check(color, c, minPorog);
-        });
-
-        if(!isExists){
-            colors.push(color);
-        }
-    }
-    
-    function check(a, b, p){
-        return !(Math.abs(a[0] - b[0]) > p || Math.abs(a[1] - b[1]) > p || Math.abs(a[2] - b[2]) > p);
+    function checkSimilarity(a, b, p){
+        return !(
+                Math.abs(a[0] - b[0]) > p
+                    || Math.abs(a[1] - b[1]) > p
+                    || Math.abs(a[2] - b[2]) > p
+            );
     }
 
-
-    const callculateMainColors = (colors, length,  porog = minPorog) => {
+    function callculateMainColors(colors, length,  porog = minPorog){
         if(colors.length !== length && porog != 255){
-            const newColors = colors.reduce((a, c) => {
-                a = a.filter(e => {
-                    return !check(e, c, porog);
-                });
-                
-                return [...a, c];
+            const newColors = colors.reduce((newColors, color) => {
+                return [
+                    ...newColors.filter(e => {
+                        return !checkSimilarity(e, color, porog);
+                    }),
+                    color
+                ];
             }, []);
 
             return callculateMainColors(
@@ -50,14 +32,11 @@ export default function(
         }
     }
 
-    let mainColors = callculateMainColors(colors, numberColors);
-
-
-    const calculateSimilarColor = (test, mainColors, porog = 256) => {
+    function calculateSimilarColor(color, mainColors, porog = 256){
         if(mainColors.length !== 1 && porog){
 
             let newList = mainColors.filter(e => {
-                return check(e, test, porog);
+                return checkSimilarity(e, color, porog);
             });
 
             if(newList.length == 0){
@@ -67,7 +46,7 @@ export default function(
             }
 
             return calculateSimilarColor(
-                test, newList, porog - 1
+                color, newList, porog - 1
             );
 
         }else if(!porog){
@@ -78,20 +57,10 @@ export default function(
         }
     }
 
-    colors = colors.map(c => {
-        return {
-            c,
-            main : calculateSimilarColor(c, mainColors)
-        };
-    });
-
-
-    const colorsArray = [];
-
-    mainColors = mainColors.map((color, i) => ({
-        name: i + 1,// RU[i],
-        value: color,
-    }));
+    let allColors = [];
+    let uniqueColors = [];
+    
+    // Этап 1. Собираем массив всех цветов и массив уникальных цветов
 
     for (let i = 0; i < imgData.data.length; i += 4) {
         const color = [
@@ -101,33 +70,60 @@ export default function(
             imgData.data[i + 3]
         ];
 
-        const found = colors.find(c => {
-            // return imgData.data[i + 0] === c.c[0]
-            //     && imgData.data[i + 1] === c.c[1]
-            //      && imgData.data[i + 2] === c.c[2];
-                return check(color, c.c, minPorog);
+        allColors.push(color);
+
+        const isExists = uniqueColors.some(e => {
+            return checkSimilarity(color, e, minPorog);
+        });
+
+        if(!isExists){
+            uniqueColors.push(color);
+        }
+    }
+    
+    // Этап 2. Вычисляем основные цвета
+
+    let mainColors = callculateMainColors(uniqueColors, numberColors);
+
+    uniqueColors = uniqueColors.map(color => {
+        return {
+            color,
+            main : calculateSimilarColor(color, mainColors)
+        };
+    });
+
+    mainColors = mainColors.map((color, i) => ({
+        name: i + 1,
+        value: color,
+    }));
+
+    // Этап 3. Заменяем все цвета на основные
+
+    allColors = allColors.map(color => {
+        const uniqueColor = uniqueColors.find(e => {
+                return checkSimilarity(color, e.color, minPorog);
             }
         );
         
         const colorName = mainColors.find(color => {
-            return found.main[0] === color.value[0]
-                && found.main[1] === color.value[1]
-                 && found.main[2] === color.value[2];
+            return uniqueColor.main[0] === color.value[0]
+                && uniqueColor.main[1] === color.value[1]
+                 && uniqueColor.main[2] === color.value[2];
             }
         ).name;
 
-        colorsArray.push(
-            {
-                color: found.main,
-                colorName,
-            }
-        );
-    }
+        return {
+            color: uniqueColor.main,
+            colorName,
+        };
+    });
+
+    // Этап 4. Упаковываем массив цветов
 
     const imgMap = new Array(imageSize).fill(null);
 
     for(let i = 0; i < imageSize; i++){
-        imgMap[i] = colorsArray.slice(i * imageSize, i * imageSize + imageSize);
+        imgMap[i] = allColors.slice(i * imageSize, i * imageSize + imageSize);
     }
     
     callback(

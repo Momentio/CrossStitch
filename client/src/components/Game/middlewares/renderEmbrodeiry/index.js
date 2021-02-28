@@ -185,6 +185,7 @@ export default function(ctx, game, updatedCrossIndexes, callback = () => {}){
     forCrossCoordinates(indexesVisibleStart, indexesVisibleEnd, (yi, xi) => {
         const coordinates = getCrossCoordinates(xi, yi);
         const value = session.data ? session.data[`${yi}/${xi}`] : null;
+        // const value = embroideryMap[yi][xi].color;
         const color = embroideryMap[yi][xi].color.join();
         const currentColorValue = currentColor ? currentColor.join() : null;
 
