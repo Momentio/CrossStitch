@@ -34,7 +34,7 @@ export default (callback = () => {}) => {
           imgData,
           game.session.numberColors,
           game.session.imageSize,
-          10,
+          40,
           (result) => {
             if(result){
 
