@@ -1,7 +1,7 @@
 import api from "../../../../operations/api";
 import killSession from "../killSession";
 import start from "../start";
-import img from "./olga.jpg";
+import img from "./vitaliy.jpg";
 
 export default () => {
     return (dispatch, getState)=>{
